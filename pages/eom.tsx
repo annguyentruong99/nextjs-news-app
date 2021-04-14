@@ -1,8 +1,11 @@
 import React from 'react';
-import styles from '../styles/EOM.module.css';
+import styles from '../styles/EOM.module.scss';
 import Toolbar from '../components/toolbar';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-const EOM = ({ employee }) => {
+const EOM = ({
+    employee,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <div className='page-container'>
             <Toolbar />
@@ -20,7 +23,7 @@ const EOM = ({ employee }) => {
     );
 };
 
-export const getServerSideProps = async (pageContent) => {
+export const getServerSideProps: GetServerSideProps = async (pageContent) => {
     const apiResponse = await fetch(
         'https://my-json-server.typicode.com/portexe/next-news/employeeOfTheMonth'
     );

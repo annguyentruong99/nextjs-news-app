@@ -1,8 +1,8 @@
 import React from 'react';
 import Toolbar from '../components/toolbar';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
-export default function Home() {
+const Home: React.FC = () => {
     return (
         <div className='page-container'>
             <Toolbar />
@@ -12,4 +12,6 @@ export default function Home() {
             </div>
         </div>
     );
-}
+};
+
+export default Home;

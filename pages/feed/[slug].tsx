@@ -1,16 +1,21 @@
 import React from 'react';
-import styles from '../../styles/Feed.module.css';
-import { useRouter } from 'next/router';
-import Toolbar from '../../components/toolbar';
+import { useRouter, NextRouter } from 'next/router';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-const Feed = ({ pageNumber, articles }) => {
-    const router = useRouter();
+import Toolbar from '../../components/toolbar';
+import styles from '../../styles/Feed.module.scss';
+
+const Feed: React.FC = ({
+    pageNumber,
+    articles,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    const router: NextRouter = useRouter();
 
     return (
         <div className='page-container'>
             <Toolbar />
             <div className={styles.main}>
-                {articles.map((article, i) => (
+                {articles.map((article: any, i: number) => (
                     <div key={i} className={styles.post}>
                         <h1
                             onClick={() => (window.location.href = article.url)}
@@ -32,9 +37,7 @@ const Feed = ({ pageNumber, articles }) => {
                     }
                     onClick={() => {
                         if (pageNumber > 1) {
-                            router
-                                .push(`/feed/${pageNumber - 1}`)
-                                .then(window.scrollTo(0, 0));
+                            router.push(`/feed/${pageNumber - 1}`);
                         }
                     }}
                 >
@@ -48,9 +51,7 @@ const Feed = ({ pageNumber, articles }) => {
                     }
                     onClick={() => {
                         if (pageNumber < 5) {
-                            router
-                                .push(`/feed/${pageNumber + 1}`)
-                                .then(window.scrollTo(0, 0));
+                            router.push(`/feed/${pageNumber + 1}`);
                         }
                     }}
                 >
@@ -61,7 +62,9 @@ const Feed = ({ pageNumber, articles }) => {
     );
 };
 
-export const getServerSideProps = async (pageContext) => {
+export const getServerSideProps: GetServerSideProps = async (
+    pageContext: any
+) => {
     const pageNumber = pageContext.query.slug;
 
     if (!pageNumber || pageNumber < 1 || pageNumber > 5) {
