@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from '../styles/EOM.module.scss';
-import Toolbar from '../components/toolbar';
+import NavBar from '../components/NavBar';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-const EOM = ({
+const EOM: React.FC = ({
     employee,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <div className='page-container'>
-            <Toolbar />
+            <NavBar />
             <div className={styles.main}>
                 <h1>Employee of the month</h1>
 

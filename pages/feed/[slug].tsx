@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-import Toolbar from '../../components/toolbar';
+import NavBar from '../../components/NavBar';
 import styles from '../../styles/Feed.module.scss';
 
 const Feed: React.FC = ({
@@ -13,7 +13,7 @@ const Feed: React.FC = ({
 
     return (
         <div className='page-container'>
-            <Toolbar />
+            <NavBar />
             <div className={styles.main}>
                 {articles.map((article: any, i: number) => (
                     <div key={i} className={styles.post}>
