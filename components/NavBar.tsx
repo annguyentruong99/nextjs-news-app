@@ -14,9 +14,15 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
+    Collapse,
 } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Menu, ChevronLeftOutlined } from '@material-ui/icons';
+import {
+    Menu,
+    ChevronLeftOutlined,
+    ExpandLess,
+    ExpandMore,
+} from '@material-ui/icons';
 
 import { Nav } from './common/common';
 
@@ -94,6 +100,7 @@ const NavBar: React.FC<NavProps> = (props) => {
     const router: NextRouter = useRouter();
 
     const [open, setOpen] = useState(false);
+    const [openSub, setOpenSub] = useState(false);
 
     const handleOpenDrawer = () => {
         setOpen(true);
@@ -101,6 +108,10 @@ const NavBar: React.FC<NavProps> = (props) => {
 
     const handleCloseDrawer = () => {
         setOpen(false);
+    };
+
+    const handleOpenSubMenu = () => {
+        setOpenSub(!openSub);
     };
 
     return (
@@ -132,7 +143,7 @@ const NavBar: React.FC<NavProps> = (props) => {
                         <Grid item>
                             <Button
                                 color='secondary'
-                                variant='outlined'
+                                variant='contained'
                                 onClick={() => router.push('/login')}
                             >
                                 Log In
@@ -161,12 +172,43 @@ const NavBar: React.FC<NavProps> = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    {Nav.map((nav) => (
-                        <ListItem button key={nav.id}>
-                            <ListItemIcon>{nav.icon}</ListItemIcon>
-                            <ListItemText primary={nav.label} />
-                        </ListItem>
-                    ))}
+                    {Nav.map((nav) =>
+                        nav.submenu ? (
+                            <div>
+                                <ListItem
+                                    key={nav.id}
+                                    onClick={handleOpenSubMenu}
+                                >
+                                    <ListItemIcon>{nav.icon}</ListItemIcon>
+                                    <ListItemText primary={nav.label} />
+                                    {openSub ? <ExpandLess /> : <ExpandMore />}
+                                </ListItem>
+                                <Collapse
+                                    in={openSub}
+                                    timeout='auto'
+                                    unmountOnExit
+                                >
+                                    <List component='div' disablePadding>
+                                        {nav.submenu?.map((submenu) => (
+                                            <ListItem key={submenu.id}>
+                                                <ListItemIcon>
+                                                    {submenu.icon}
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    primary={submenu.label}
+                                                />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </Collapse>
+                            </div>
+                        ) : (
+                            <ListItem key={nav.id}>
+                                <ListItemIcon>{nav.icon}</ListItemIcon>
+                                <ListItemText primary={nav.label} />
+                            </ListItem>
+                        )
+                    )}
                 </List>
             </Drawer>
             <main className={classes.content}>

@@ -8,17 +8,18 @@ const EOM: React.FC = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <div className='page-container'>
-            <NavBar />
-            <div className={styles.main}>
-                <h1>Employee of the month</h1>
+            <NavBar>
+                <div className={styles.main}>
+                    <h1>Employee of the month</h1>
 
-                <div className={styles.employeeOfTheMonth}>
-                    <h3>{employee.name}</h3>
-                    <h6>{employee.position}</h6>
-                    <img src={employee.image} />
-                    <p>{employee.description}</p>
+                    <div className={styles.employeeOfTheMonth}>
+                        <h3>{employee.name}</h3>
+                        <h6>{employee.position}</h6>
+                        <img src={employee.image} />
+                        <p>{employee.description}</p>
+                    </div>
                 </div>
-            </div>
+            </NavBar>
         </div>
     );
 };
