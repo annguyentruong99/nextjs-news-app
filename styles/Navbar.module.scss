@@ -1,0 +1,12 @@
+.page-container {
+    .drawer {
+        width: 240px;
+        z-index: 1;
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}
