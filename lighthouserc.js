@@ -1,12 +1,12 @@
-const fs = require("fs");
+// const fs = require("fs");
 
-const urlsArr = fs.readFileSync("./lh-urls.csv").toString().split("\n");
+// const urlsArr = fs.readFileSync("./lh-urls.csv").toString().split("\n");
 
 module.exports = {
 	ci: {
 		collect: {
-			url: urlsArr,
-			staticDistDir: "./.next",
+			url: ["http://localhost:3000"],
+			startServerCommand: "npm run start",
 			isSinglePageApplication: true,
 			numberOfRuns: 1,
 		},
