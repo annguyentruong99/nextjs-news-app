@@ -1,6 +1,7 @@
 module.exports = {
 	ci: {
 		collect: {
+			staticDistDir: "./.next",
 			isSinglePageApplication: true,
 		},
 		upload: {
