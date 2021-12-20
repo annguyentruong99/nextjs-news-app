@@ -4,9 +4,9 @@ import NavBar from '../components/NavBar';
 import axios from 'axios';
 
 const Home: React.FC = () => {
-    const [state, setState] = useState({
-        newsArticles: new Array(),
-    });
+    const [_, setState] = useState({
+			newsArticles: new Array(),
+		});
 
     useEffect(() => {
         axios
