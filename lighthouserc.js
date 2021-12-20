@@ -5,9 +5,7 @@
 module.exports = {
 	ci: {
 		collect: {
-			url: ["http://localhost:3000"],
-			startServerCommand: "npm run start",
-			isSinglePageApplication: true,
+			url: ["https://www.executivecentre.com/"],
 			numberOfRuns: 1,
 		},
 		upload: {
